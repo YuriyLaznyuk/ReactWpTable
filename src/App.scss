@@ -1,0 +1,55 @@
+.app-h1 {
+  text-align: center;
+  color: #00ccff;
+
+  &:hover {
+    color: #6610f2;
+    opacity: 0.5;
+    transition: 500ms;
+
+  }
+}
+
+.showTable {
+  width: 70%;
+  margin: 20px auto;
+  border: 1px solid;
+  table-layout: fixed;
+  text-align: center;
+}
+
+.showTable thead > tr {
+  &:nth-child(1) {
+    background: #a3acb6;
+  }
+
+  &:nth-child(2) {
+    background: #949696;
+  }
+
+  &:nth-child(3) {
+    background: #b8b8be;
+  }
+
+  &:nth-child(3) button,
+  &:nth-child(2) button,
+  &:nth-child(1) button,
+  &:nth-child(1) input,
+  {
+    margin: 1px 0 1px 7px;
+    cursor: pointer;
+    padding: 2px 5px;
+  }
+
+}
+
+.showTable tr, .showTable td, .showTable th {
+  border: 1px solid;
+}
+
+.showTable tbody {
+  background: #9fcdff;
+}
+.actionBtn{
+  background-color: rgba(229, 56, 105, 0.72);
+}
