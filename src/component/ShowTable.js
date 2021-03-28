@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {biathletes} from "../table/biathletes";
 
-// const biatList = biathletes;
+
 const biatList = biathletes.sort((a, b) => (a.id - b.id));
 
 function ShowTable(props) {
-    // const [list, setList] = useState([]);
+
     const [list, setList] = useState(biatList);
     const [name, setName] = useState();
     const [btn, setBtn] = useState(null);
@@ -18,31 +18,13 @@ function ShowTable(props) {
         setRevers('hike');
         setFlag(false);
         setList(
-            // biatList.filter(i => i.name.includes(name))
             list.filter(i => i.name.includes(name))
         )
 
     }
 
-    // const defaultResults = (btn) => {
-    //     if (list.length > 0) {
-    //         setList([]);
-    //     }
-    //     setRevers('hike');
-    //     setFlag(false);
-    //     setTimeout(() => {
-    //         setBtn(btn);
-    //         biatList.sort((a, b) => (a.id - b.id));
-    //         setList(biatList);
-    //
-    //     }, 0)
-    // }
-
 
     const defaultResults = (btn) => {
-        // if (list.length > 0) {
-        //     setList([]);
-        // }
 
 
         setRevers('hike');
@@ -55,15 +37,12 @@ function ShowTable(props) {
 
 
     function showSort(data, button, x, y) {
-        // if (list.length > 0) {
-        //     setList([]);
-        // }
+
 
         setBtn(button);
         (btn === button && flag) ? setRevers('hike') : setRevers('drop');
         setFlag(!flag);
 
-        // let arrHit = biatList.sort(function (a, b) {
         let arrHit = list.sort(function (a, b) {
 
             if (a[data] > b[data]) {
@@ -86,9 +65,11 @@ function ShowTable(props) {
                 }
             }
             return 0
+
+
         });
         setList(arrHit)
-        // console.log(arrHit)
+
 
     }
 
@@ -118,7 +99,7 @@ function ShowTable(props) {
                 <tr>
                     <th>name
                         <button className={(btn === 'btn1') ? 'actionBtn' : null}
-                                onClick={() => showSort('name', "btn1", -1, 1)}
+                                onClick={() => showSort('name', "btn1", 1, -1)}
                         >{(btn === 'btn1' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                     <th>hit
