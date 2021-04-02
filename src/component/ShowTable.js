@@ -8,18 +8,19 @@ function ShowTable(props) {
 
     const [list, setList] = useState(biatList);
     const [name, setName] = useState();
-    const [btn, setBtn] = useState(null);
+    const [buttonSelected, setButtonSelected] = useState(null);
     const [revers, setRevers] = useState('hike');
     const [flag, setFlag] = useState(false);
 
-
     function filterName(btn) {
-        setBtn(btn);
+        setButtonSelected(btn);
         setRevers('hike');
+
         setFlag(false);
         setList(
-            list.filter(i => i.name.includes(name))
+            list.filter(i => i.name.toLowerCase().includes(name.toLowerCase()))
         )
+
 
     }
 
@@ -29,7 +30,7 @@ function ShowTable(props) {
 
         setRevers('hike');
         setFlag(false);
-        setBtn(btn);
+        setButtonSelected(btn);
         setList(biatList.sort((a, b) => (a.id - b.id)));
 
 
@@ -39,8 +40,8 @@ function ShowTable(props) {
     function showSort(data, button, x, y) {
 
 
-        setBtn(button);
-        (btn === button && flag) ? setRevers('hike') : setRevers('drop');
+        setButtonSelected(button);
+        (buttonSelected === button && flag) ? setRevers('hike') : setRevers('drop');
         setFlag(!flag);
 
         let arrHit = list.sort(function (a, b) {
@@ -82,14 +83,14 @@ function ShowTable(props) {
                     <th colSpan={3}>
                         <input type="text" placeholder='name'
                                onChange={e => setName(e.target.value)}/>
-                        <button className={(btn === 'search') ? 'actionBtn' : null}
+                        <button className={(buttonSelected === 'search') ? 'actionBtn' : null}
                                 onClick={() => filterName('search')}>search
                         </button>
                     </th>
                 </tr>
                 <tr>
                     <th colSpan={3}>
-                        <button className={(btn === 'def') ? 'actionBtn' : null}
+                        <button className={(buttonSelected === 'def') ? 'actionBtn' : null}
                                 onClick={() => defaultResults('def')}>
                             default results
                         </button>
@@ -98,19 +99,19 @@ function ShowTable(props) {
                 </tr>
                 <tr>
                     <th>name
-                        <button className={(btn === 'btn1') ? 'actionBtn' : null}
+                        <button className={(buttonSelected === 'btn1') ? 'actionBtn' : null}
                                 onClick={() => showSort('name', "btn1", 1, -1)}
-                        >{(btn === 'btn1' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        >{(buttonSelected === 'btn1' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                     <th>hit
-                        <button className={(btn === 'btn2') ? 'actionBtn' : null}
+                        <button className={(buttonSelected === 'btn2') ? 'actionBtn' : null}
                                 onClick={() => showSort('hit', "btn2", 1, -1)}
-                        >{(btn === 'btn2' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        >{(buttonSelected === 'btn2' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                     <th>short rate
-                        <button className={(btn === 'btn3') ? 'actionBtn' : null}
+                        <button className={(buttonSelected === 'btn3') ? 'actionBtn' : null}
                                 onClick={() => showSort('speed', "btn3", 1, -1)}
-                        >{(btn === 'btn3' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        >{(buttonSelected === 'btn3' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                 </tr>
                 </thead>
