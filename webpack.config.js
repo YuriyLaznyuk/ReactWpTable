@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin =require('mini-css-extract-plugin')
+const ESLintWpPluginReact = require('eslint-webpack-plugin');
 
 module.exports = {
     // output bundle file
@@ -18,9 +19,24 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
+                // use: [
+                //     'babel-loader',
+                //     'eslint-loader'
+                //
+                // ]
+
                 use: {
-                    loader: 'babel-loader'
-                }
+                    loader: "babel-loader",
+                    options:{
+                        presets: [
+                            "@babel/preset-env",
+                            "@babel/preset-react",
+                        ],
+                    },
+                },
+
+
+
             },
             {
                 test: /\.(css|scss)$/,
@@ -35,6 +51,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './src/index.html' }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin(),new ESLintWpPluginReact({
+            extensions:["js","jsx",]
+        })
     ],
 }
