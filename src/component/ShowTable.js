@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {biathletes} from "../table/biathletes";
 
-
 const biatList = biathletes.sort((a, b) => (a.id - b.id));
 
 function ShowTable(props) {
@@ -19,26 +18,20 @@ function ShowTable(props) {
         setFlag(false);
         setList(
             list.filter(i => i.name.toLowerCase().includes(name.toLowerCase()))
-        )
-
+        );
 
     }
 
-
     const defaultResults = (btn) => {
-
 
         setRevers('hike');
         setFlag(false);
         setButtonSelected(btn);
         setList(biatList.sort((a, b) => (a.id - b.id)));
 
-
-    }
-
+    };
 
     function showSort(data, button, x, y) {
-
 
         setButtonSelected(button);
         (buttonSelected === button && flag) ? setRevers('hike') : setRevers('drop');
@@ -62,18 +55,15 @@ function ShowTable(props) {
                     case "hike":
                         return y;
                     case "drop":
-                        return -y
+                        return -y;
                 }
             }
-            return 0
-
+            return 0;
 
         });
-        setList(arrHit)
-
+        setList(arrHit);
 
     }
-
 
     return (
         <div>
@@ -101,17 +91,20 @@ function ShowTable(props) {
                     <th>name
                         <button className={(buttonSelected === 'btn1') ? 'actionBtn' : null}
                                 onClick={() => showSort('name', "btn1", 1, -1)}
-                        >{(buttonSelected === 'btn1' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        >{(buttonSelected === 'btn1' && revers === "hike") ? <span>&#9651;</span> :
+                            <span>&#9661;</span>}</button>
                     </th>
                     <th>hit
                         <button className={(buttonSelected === 'btn2') ? 'actionBtn' : null}
                                 onClick={() => showSort('hit', "btn2", 1, -1)}
-                        >{(buttonSelected === 'btn2' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        >{(buttonSelected === 'btn2' && revers === "hike") ? <span>&#9651;</span> :
+                            <span>&#9661;</span>}</button>
                     </th>
                     <th>short rate
                         <button className={(buttonSelected === 'btn3') ? 'actionBtn' : null}
                                 onClick={() => showSort('speed', "btn3", 1, -1)}
-                        >{(buttonSelected === 'btn3' && revers === "hike") ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        >{(buttonSelected === 'btn3' && revers === "hike") ? <span>&#9651;</span> :
+                            <span>&#9661;</span>}</button>
                     </th>
                 </tr>
                 </thead>
@@ -124,7 +117,7 @@ function ShowTable(props) {
                                     <td>{item.hit}</td>
                                     <td>{item.speed}</td>
                                 </tr>
-                            )
+                            );
 
                         }
                     )
