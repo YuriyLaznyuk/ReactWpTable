@@ -11,6 +11,13 @@ function ShowTable(props) {
     const [revers, setRevers] = useState('hike');
     const [flag, setFlag] = useState(false);
 
+    const [data, setData] = useState(true);
+
+    function changeState() {
+        setData(!data);
+
+    }
+
     function filterName(btn) {
         setButtonSelected(btn);
         setRevers('hike');
@@ -124,6 +131,7 @@ function ShowTable(props) {
                 }
                 </tbody>
             </table>
+            <button onClick={() => changeState()}>{data ? 'Hello' : 'Bay-Bay'}</button>
         </div>
     );
 }

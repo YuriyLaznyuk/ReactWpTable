@@ -2,7 +2,7 @@ import React, {useReducer} from 'react';
 import {biathletes} from "../table/biathletes";
 
 const listInit = biathletes.sort((a, b) => (a.id - b.id));
-const initState = {list: listInit, name: '', buttonSelected: null, revers: 'hike', flag: false};
+const initState = {list: listInit, name: '', buttonSelected: null, revers: 'hike', flag: false, init: [...listInit]};
 
 function reducer(state, action) {
     switch (action.type) {
@@ -24,7 +24,7 @@ function reducer(state, action) {
         case 'default results':
             return {
                 ...state,
-                list: listInit.sort((a,b)=>(a.id-b.id)),
+                list: [...state.init],
                 buttonSelected: 'default',
                 revers: 'hike',
                 flag: false
@@ -54,10 +54,10 @@ function reducer(state, action) {
             return {
                 ...state,
                 buttonSelected: action.payload.button,
-                revers: (state.buttonSelected===action.payload.button && state.flag)
-                ? 'hike' :'drop',
+                revers: (state.buttonSelected === action.payload.button && state.flag)
+                    ? 'hike' : 'drop',
                 flag: !state.flag,
-            }
+            };
         default:
             return state;
 
@@ -95,24 +95,24 @@ function ShowTableReducer(props) {
                 </tr>
                 <tr>
                     <th>name
-                        <button className={(buttonSelected === 'btn1') ? 'actionBtn' : null} onClick={()=>dispatch({
-                            type:'click button',payload:{data:'name',button:'btn1',x:1, y:-1}
-                        })}>{(buttonSelected==='btn1' && revers==='hike')
-                        ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
+                        <button className={(buttonSelected === 'btn1') ? 'actionBtn' : null} onClick={() => dispatch({
+                            type: 'click button', payload: {data: 'name', button: 'btn1', x: 1, y: -1}
+                        })}>{(buttonSelected === 'btn1' && revers === 'hike')
+                            ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                     <th>
                         hit
-                        <button className={(buttonSelected === 'btn2') ? 'actionBtn' : null} onClick={()=>dispatch({
-                            type:'click button', payload:{data:'hit',button:'btn2', x:1, y:-1}
-                        })}>{(buttonSelected==='btn2' && revers==='hike')
-                        ? <span>&#9651;</span> :<span>&#9661;</span>}</button>
+                        <button className={(buttonSelected === 'btn2') ? 'actionBtn' : null} onClick={() => dispatch({
+                            type: 'click button', payload: {data: 'hit', button: 'btn2', x: 1, y: -1}
+                        })}>{(buttonSelected === 'btn2' && revers === 'hike')
+                            ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                     <th>
                         short rate
-                        <button className={(buttonSelected === 'btn3') ? 'actionBtn' : null} onClick={()=>dispatch({
-                            type:'click button', payload:{data:'speed', button:'btn3', x:1, y:-1}
-                        })}>{(buttonSelected==='btn3' && revers==='hike')
-                        ? <span>&#9651;</span> : <span>&#9661;</span> }</button>
+                        <button className={(buttonSelected === 'btn3') ? 'actionBtn' : null} onClick={() => dispatch({
+                            type: 'click button', payload: {data: 'speed', button: 'btn3', x: 1, y: -1}
+                        })}>{(buttonSelected === 'btn3' && revers === 'hike')
+                            ? <span>&#9651;</span> : <span>&#9661;</span>}</button>
                     </th>
                 </tr>
                 </thead>
